@@ -15,8 +15,8 @@ bbduk_trimming.sh #qtrim=l trimq=35 + qtrim=rl trimq=30 minlen=100 + quality che
 phixgenome_removal.sh
 
 #4.denoising and taxonomic assigment (pseudo pooling, silva database, minBoot=80)
-Trimmed sequences are processed following the DADA2 Workflow with dada2 version 1.10.1 (https://benjjneb.github.io/dada2/tutorial.html)
-dada2_rscript.R
+Trimmed sequences are processed following the DADA2 Workflow with dada2 version 1.10.1 (https://benjjneb.github.io/dada2/tutorial.html) <br>
+dada2_rscript.R <br>
 dada2.sh
 
 **Worklfow for statistical analysis**:<br>
