@@ -1,19 +1,5 @@
-library("diverse")
-
-# Subset by timepoint
-ps3.1w<-subset_samples(ps3,Timepoint == "1v")
-ps3.2w<-subset_samples(ps3,Timepoint == "2v")
-ps3.3w<-subset_samples(ps3,Timepoint == "3v")
-ps3.4w<-subset_samples(ps3,Timepoint == "4v")
-ps3.gw36<-subset_samples(ps3,Timepoint == "gv36")
-ps3.2y<-subset_samples(ps3,Timepoint == "2y")
-
-ps3.1w<- prune_taxa(taxa_sums(ps3.1w) > 0, ps3.1w) # prune taxa without observations
-ps3.2w<- prune_taxa(taxa_sums(ps3.2w) > 0, ps3.2w) 
-ps3.3w<- prune_taxa(taxa_sums(ps3.3w) > 0, ps3.3w) 
-ps3.4w<- prune_taxa(taxa_sums(ps3.4w) > 0, ps3.4w) 
-ps3.gw36<- prune_taxa(taxa_sums(ps3.gw36) > 0, ps3.gw36) 
-ps3.2y<- prune_taxa(taxa_sums(ps3.2y) > 0, ps3.2y)
+library(diverse)
+library(nortest)
 
 # extract phyloseq otu and data
 otu1<-as(otu_table(ps3.1w),"matrix")
@@ -71,7 +57,6 @@ div6m<-melt(div6[,c("Diversity","Richness","Evenness","Supplementation","Timepoi
 
 # normality test
 adt<-function(x){ test<-ad.test(x); return(test$p.value) }
-#store the p-values for each column in a separate variable
 p.adt1<-apply(div1[,c(1:4)],MARGIN = 2, adt)
 p.adt2<-apply(div2[,c(1:4)],MARGIN = 2, adt)
 p.adt3<-apply(div3[,c(1:4)],MARGIN = 2, adt)
@@ -87,8 +72,7 @@ mnt4<-sapply(div4[,c("Diversity","Richness","Evenness","Dominance")], function(x
 mnt5<-sapply(div5[,c("Diversity","Richness","Evenness","Dominance")], function(x) wilcox.test(x ~ div5$Supplementation)$p.value)
 mnt6<-sapply(div6[,c("Diversity","Richness","Evenness","Dominance")], function(x) wilcox.test(x ~ div6$Supplementation)$p.value)
 
-mnt.df<-rbind(mnt1,mnt2,mnt3,mnt4,mnt5,mnt6)
-mnt.df<-as.data.frame(mnt.df)
+mnt.df<-as.data.frame(rbind(mnt1,mnt2,mnt3,mnt4,mnt5,mnt6))
 
 # p.adjust
 vec.diversity<-as.vector(mnt.df$Diversity)
@@ -155,14 +139,10 @@ divm<-rbind(div1m,div2m,div3m,div4m,div5m,div6m)
 # to sort out facet grid by time point
 divm$Timepoint = factor(divm$Timepoint, levels=c("1w","2w","3w","4w","PMW36","2y"))
 
-palpha<-ggplot(divm, aes(x=test, y=value,fill=Supplementation)) + 
+ggplot(divm, aes(x=test, y=value,fill=Supplementation)) + 
   geom_boxplot() + ylab("Alpha Diversity Measure") + theme_bw( ) + facet_grid(variable ~ Timepoint, scales="free",)  +
   scale_fill_manual(values=cbbPalette)  +
+  geom_jitter(aes(colour = Supplementation),size=0.5, alpha=0.9) +
+  stat_summary(fun=mean, geom="point", shape=5, size=2, color="black", fill="black") +
   theme(panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),axis.title.x=element_blank(),legend.position="none") 
-
-ggsave("Fig2_alpha.pdf",palpha)
-
-
-
-
+          panel.grid.minor = element_blank(),axis.title.x=element_blank(),legend.position="none")
