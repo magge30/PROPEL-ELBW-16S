@@ -59,8 +59,8 @@ nmds.1w <- ordinate(ps3.1w.VST, method="NMDS", distance="euclidean")
 scrs <- as.data.frame(scores(nmds.1w, display = "sites"))
 scrs <- cbind(scrs,Supplementation = dat$Supplementation, Location=dat$Location, Antibiotic=dat$Antibiotic)
 scrs$Location<-as.character(scrs$Location)
-scrs$Location<-gsub("0","Linköping",scrs$Location)
-scrs$Location<-gsub("1","Stockholm",scrs$Location)
+scrs$Location<-gsub("0","Linköping",scrs$Location) # 0 is L and Location is Inclusion_site in Table S10
+scrs$Location<-gsub("1","Stockholm",scrs$Location) # 1 is S and Location is Inclusion_site in Table S10 
 scrs$locAnt<-paste(scrs$Location,scrs$Antibiotic,sep="_")
 set.seed(3687)
 spec <- envfit(nmds.1w, otu, perm=999)
@@ -318,12 +318,13 @@ stress.validation<-function(x){
   return(stress.val<-c(mds1$stress,mds2$stress,mds3$stress,mds4$stress,mds5$stress,mds6$stress,mds7$stress,mds8$stress,mds9$stress,mds10$stress))
 }
 
-s1<-stress.validation(ps3.1w)
-s2<-stress.validation(ps3.2w)
-s3<-stress.validation(ps3.3w)
-s4<-stress.validation(ps3.4w)
-s5<-stress.validation(ps3.gw36)
-s6<-stress.validation(ps3.2y)
+# takes long time to run
+#s1<-stress.validation(ps3.1w) 
+#s2<-stress.validation(ps3.2w)
+#s3<-stress.validation(ps3.3w)
+#s4<-stress.validation(ps3.4w)
+#s5<-stress.validation(ps3.gw36)
+#s6<-stress.validation(ps3.2y)
 
 par(mfrow=c(2,3))
 plot(1:10,s1,type='b')
