@@ -1,3 +1,6 @@
+library(reshape2)
+library(ggplot2)
+
 # tax glom to different levels
 ps3.phy<-tax_glom(ps3,"Phylum")
 ps3.fam<-tax_glom(ps3,"Family")
@@ -6,28 +9,20 @@ ps3.gen<-tax_glom(ps3,"Genus")
 # extract otu and tax table from phyloseq object
 asv.phy = as(otu_table(ps3.phy), "matrix")
 asv.fam = as(otu_table(ps3.fam), "matrix")
-asv.ord = as(otu_table(ps3.ord), "matrix")
 asv.gen = as(otu_table(ps3.gen), "matrix")
-asv.spp = as(otu_table(ps3.spp), "matrix")
 
 dat.phy  = as(sample_data(ps3.phy),"data.frame")
 dat.fam  = as(sample_data(ps3.fam),"data.frame")
-dat.ord  = as(sample_data(ps3.ord),"data.frame")
 dat.gen  = as(sample_data(ps3.gen),"data.frame")
-dat.spp  = as(sample_data(ps3.spp),"data.frame")
 
 # extract taxa phyoseq object
 tax.phy = as(tax_table(ps3.phy),"matrix")
 tax.fam = as(tax_table(ps3.fam),"matrix")
-tax.ord = as(tax_table(ps3.ord),"matrix")
 tax.gen = as(tax_table(ps3.gen),"matrix")
-tax.spp = as(tax_table(ps3.spp),"matrix")
 
 tax.phy = as.data.frame(tax.phy[,"Phylum"])
 tax.fam = as.data.frame(tax.fam[,"Family"])
-tax.ord = as.data.frame(tax.ord[,"Order"])
 tax.gen = as.data.frame(tax.gen[,"Genus"])
-tax.spp = as.data.frame(tax.spp[,"Species"])
 
 names(tax.phy)<-"Phylum"
 names(tax.fam)<-"Family"
@@ -70,7 +65,6 @@ fix.data.melt<-function(asv,tax,dat){
 }
 
 phy.melt<-fix.data.melt(asv.phy,tax.phy,dat.phy)   # without NA
-
 
 ########################################################################
 # Family and Genus
@@ -122,7 +116,6 @@ fam1<-merge(as.data.frame(t(fam.r1)),fam[c("Timepoint","Supplementation")],by="r
 gen1<-merge(as.data.frame(t(gen.r1)),gen[c("Timepoint","Supplementation")],by="row.names",all.y=TRUE)
 
 # how much of relative abundance
-#ord.r2<-relabu1others(ord.count)
 gen.r2<-relabu1others(gen.count)
 
 # Stacked bar plots
@@ -232,8 +225,6 @@ ps3.1w.phy<-subset_taxa(ps3.1w.phy, Phylum !="NA")
 # "Sectio"    3w
 # "ABv4.0d"      4w 
 # "Location" (not confounder) 1w
-
-setwd("/Users/magge30/Documents/Research/Postdoc_2017_ThomasAbrahamsson/PROPEL/16S_DataAnalysis/R_analyis/R_results/LEFSE/lefse_manuscript")
 
 # +++++ LEFSE fucntion to prepare data ++++ #
 lefsedata<-function(ps){
