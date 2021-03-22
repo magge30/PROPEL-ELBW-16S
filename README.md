@@ -2,6 +2,7 @@
 Scripts to produce the analysis and figures for PROPEL 16S paper
 
 **Worklfow from raw sequences to ASV table**: <br> 
+Sequences available at European Nucleotide Archive : PRJEB36531.<br>
 #1.raw sequences quality check (fastqc and multiqc for raw reads)
 quality_check_raw.sh
 
