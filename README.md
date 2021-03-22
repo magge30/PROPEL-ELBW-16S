@@ -1,7 +1,7 @@
 # PROPEL-ELBW-16
 Scripts to produce the analysis and figures for PROPEL 16S paper
 
-Worklfow from raw sequences to ASV table: <br> 
+**Worklfow from raw sequences to ASV table**: <br> 
 #1.raw sequences quality check (fastqc and multiqc for raw reads)
 quality_check_raw.sh
 
@@ -16,6 +16,12 @@ Trimmed sequences are processed following the DADA2 Workflow with dada2 version 
 dada2_rscript.R
 dada2.sh
 
-Worklfow for statistical analysis:
+**Worklfow for statistical analysis**:
+#1 Preprocessing.R
+#2: Figure 2: Alpha-diversity
+#3: Figure 3: Beta-diversity
+#4: Figure 4: Taxonomy
+#5: Figure 5: qPCR
+#6: Figure 6: Growth
 
 
