@@ -5,13 +5,13 @@ https://doi.org/10.1016/j.xcrm.2021.100206
 
 **Worklfow from raw sequences to ASV table**: <br> 
 Sequences available at European Nucleotide Archive : PRJEB36531.<br>
-#1.raw sequences quality check (fastqc and multiqc for raw reads)
-quality_check_raw.sh
+#1.raw sequences quality check (fastqc and multiqc for raw reads) <br>
+quality_check_raw.sh <br>
 
-#2.quality trimming and filtering + quality check afterwards
-bbduk_trimming.sh #qtrim=l trimq=35 + qtrim=rl trimq=30 minlen=100 + quality check
+#2.quality trimming and filtering + quality check afterwards <br>
+bbduk_trimming.sh #qtrim=l trimq=35 + qtrim=rl trimq=30 minlen=100 + quality check <br>
 
-#3.remove phix genome NC_001422.1 from trimmed sequences + quality cehck afterwards
+#3.remove phix genome NC_001422.1 from trimmed sequences + quality cehck afterwards <br>
 phixgenome_removal.sh
 
 #4.denoising and taxonomic assigment (pseudo pooling, silva database, minBoot=80)
