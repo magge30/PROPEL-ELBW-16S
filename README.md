@@ -1,5 +1,5 @@
 # PROPEL-ELBW-16
-Scripts to produce the analysis and figures for PROPEL 16S paper:
+Scripts to produce the analysis and figures for PROPEL 16S paper: <br>
 Effects of Lactobacillus reuteri supplementation on the gut microbiota in extremely preterm infants in a randomized placebo-controlled trial.<br>
 https://doi.org/10.1016/j.xcrm.2021.100206
 
