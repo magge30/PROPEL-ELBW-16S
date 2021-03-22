@@ -16,12 +16,12 @@ Trimmed sequences are processed following the DADA2 Workflow with dada2 version 
 dada2_rscript.R
 dada2.sh
 
-**Worklfow for statistical analysis**:
-#1 Preprocessing.R
-#2: Figure 2: Alpha-diversity
-#3: Figure 3: Beta-diversity
-#4: Figure 4: Taxonomy
-#5: Figure 5: qPCR
-#6: Figure 6: Growth
+**Worklfow for statistical analysis**:<br>
+#1 Preprocessing.R <br>
+#2: Figure 2: Alpha-diversity <br>
+#3: Figure 3: Beta-diversity <br>
+#4: Figure 4: Taxonomy <br>
+#5: Figure 5: qPCR <br>
+#6: Figure 6: Growth <br>
 
 
