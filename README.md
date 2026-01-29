@@ -3,7 +3,7 @@ Scripts to produce the analysis and figures for the PROPEL 16S paper: <br>
 Effects of Lactobacillus reuteri supplementation on the gut microbiota in extremely preterm infants in a randomized placebo-controlled trial.<br>
 https://doi.org/10.1016/j.xcrm.2021.100206
 
-**Worklfow from raw sequences to ASV table**: <br> 
+## Worklfow from raw sequences to ASV table**: <br> 
 Sequences available at European Nucleotide Archive : PRJEB36531.<br>
 #1.raw sequences quality check (fastqc and multiqc for raw reads) <br>
 quality_check_raw.sh <br>
@@ -19,7 +19,7 @@ Trimmed sequences are processed following the DADA2 Workflow with dada2 version 
 dada2_rscript.R <br>
 dada2.sh
 
-**Worklfow for statistical analysis**:<br>
+## Worklfow for statistical analysis**:<br>
 Metadata available at https://doi.org/10.1016/j.xcrm.2021.100206 <br>
 #1 Preprocessing.R <br>
 #2: Figure 2: Alpha-diversity <br>
